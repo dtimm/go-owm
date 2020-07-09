@@ -28,6 +28,7 @@ type api struct {
 func (a api) Current(city string) (interface{}, error) {
 	r, _ := http.NewRequest("GET", fmt.Sprintf("%s/data/2.5/weather", OWMAPI), nil)
 	q := r.URL.Query()
+	q.Add("q", city)
 	q.Add("appid", a.key)
 	r.URL.RawQuery = q.Encode()
 
